@@ -2,4 +2,4 @@
 Private And Public Pusher Chat By Laravel And JQuery
 <br><br>
 Public Chat  
-<img src="../master/images/groupChat.png" alt="">  
+<img src="../main/images/groupChat.png" alt="">  
