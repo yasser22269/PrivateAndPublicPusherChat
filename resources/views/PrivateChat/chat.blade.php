@@ -22,7 +22,7 @@
 @endsection
 @section('content')
     <div class="container">
-        <h2> Group All User Chats</h2>
+        <h2> Private Chat</h2>
         <div class="card">
             <div class="card-header">
                    Name : {{auth()->user()->name}}
@@ -67,7 +67,7 @@
                 <div class="input-group">
                     <select name="user_id" id="getuserselect"  class="form-select">
                         @foreach($users as $user)
-                            <option  value="{{$user->id}}">{{$user->name}}</option>
+                            <option {{$user->id == auth()->user()->id ? 'selected': ''}}   value="{{$user->id}}">{{$user->name}}</option>
                         @endforeach
                     </select>
                 </div>
