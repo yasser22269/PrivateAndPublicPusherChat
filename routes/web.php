@@ -21,8 +21,14 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/chat', [App\Http\Controllers\ChatsController::class, 'index']);
-Route::get('/messages', [App\Http\Controllers\ChatsController::class, 'fetchMessages']);
-Route::post('/messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
+Route::get('/chat', [App\Http\Controllers\PublicChatsController::class, 'index']);
+Route::get('/messages', [App\Http\Controllers\PublicChatsController::class, 'fetchMessages']);
+Route::post('/messages', [App\Http\Controllers\PublicChatsController::class, 'sendMessage']);
 
-Route::get('/chatify?{id}',[\Chatify\Http\Controllers\MessagesController::class, 'index']);
+
+
+Route::group(['prefix' => 'Private','middleware' =>['auth:web'] ],function () {
+Route::get('/chat', [App\Http\Controllers\PrivateChatsController::class, 'index']);
+Route::get('/messages/{id}', [App\Http\Controllers\PrivateChatsController::class, 'fetchMessages']);
+Route::post('/messages', [App\Http\Controllers\PrivateChatsController::class, 'sendMessage']);
+});

@@ -83,7 +83,7 @@
         });
         let direction;
         let channel = Echo.channel('channel-chat');
-        channel.listen('ChatEvent',function (data){
+        channel.listen('PublicChatEvent',function (data){
             if(id == data.message.user.id ){
                 direction = "right";
             }else{

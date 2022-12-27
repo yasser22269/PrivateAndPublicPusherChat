@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\ChatEvent;
+use App\Events\PublicChatEvent;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
-class ChatsController extends Controller
+class PublicChatsController extends Controller
 {
     public function __construct()
     {
@@ -39,7 +39,7 @@ class ChatsController extends Controller
             'user' => $message->user,
             'message' => $request->input('message'),
         ];
-        ChatEvent::dispatch($send);
+        PublicChatEvent::dispatch($send);
         return $send;
     }
 }
